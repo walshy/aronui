@@ -635,10 +635,9 @@ export default function HomePage() {
           <span className="chip chip-teal a-hero-pill">
             <Icon name="spark" size={14} /> Built on Te Mātaiaho · the 2025 NZ English Curriculum
           </span>
-          <h1 className="display a-hero-h">Teach the new NZ English<br />Curriculum with confidence</h1>
+          <h1 className="display a-hero-h">Curriculum-aligned lessons, units and assessments in minutes.</h1>
           <p className="lede a-hero-sub">
-            Curriculum-aligned lesson plans, assessments and teaching resources — generated from
-            the official strands, elements and sub-elements, and built specifically for New Zealand English teachers.
+            Built specifically for New Zealand English teachers using the official curriculum structure.
           </p>
           <div className="a-hero-cta">
             <a href="#" className="btn btn-teal btn-lg"><Icon name="spark" size={17} /> Start Planning</a>
