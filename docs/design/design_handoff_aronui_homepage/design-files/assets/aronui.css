@@ -1,0 +1,204 @@
+/* ============================================================
+   Aronui — shared design system
+   Te Mātaiaho · NZ English Curriculum planning platform
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+
+:root{
+  /* ---- Brand palette ---- */
+  --navy-900:#0c1726;   /* deepest ink */
+  --navy-800:#10223a;
+  --navy-700:#14304f;
+  --navy:#16263d;       /* primary deep navy */
+  --navy-ink:#1c2c44;
+
+  --teal-700:#0b5e57;
+  --teal:#0e7c72;       /* brand teal */
+  --teal-500:#13988c;
+  --teal-300:#7fc8c0;
+  --teal-100:#e3f2f0;
+
+  --gold-700:#a8761f;
+  --gold:#c8922a;       /* warm gold accent */
+  --gold-400:#dcab55;
+  --gold-100:#f6ecd6;
+
+  /* ---- Slate neutrals ---- */
+  --ink:#16263d;
+  --slate-800:#2c3e52;
+  --slate-700:#3d4f63;
+  --slate-600:#566678;
+  --slate-500:#6c7c8e;
+  --slate-400:#93a1b0;
+  --slate-300:#c3ccd6;
+  --line:#e4e9ef;
+  --line-soft:#eef2f6;
+  --surface:#ffffff;
+  --surface-2:#f7f9fb;
+  --surface-3:#f0f4f8;
+  --paper:#fbfcfd;
+
+  /* ---- Type ---- */
+  --serif:'Spectral', Georgia, 'Times New Roman', serif;
+  --sans:'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ---- Radius / shadow ---- */
+  --r-sm:8px; --r-md:12px; --r-lg:18px; --r-xl:26px; --r-pill:999px;
+  --sh-xs:0 1px 2px rgba(16,34,58,.06);
+  --sh-sm:0 2px 8px rgba(16,34,58,.06), 0 1px 2px rgba(16,34,58,.05);
+  --sh-md:0 8px 24px rgba(16,34,58,.08), 0 2px 6px rgba(16,34,58,.05);
+  --sh-lg:0 24px 60px -12px rgba(12,23,38,.20), 0 8px 24px rgba(12,23,38,.08);
+  --sh-xl:0 40px 90px -20px rgba(12,23,38,.34), 0 12px 30px rgba(12,23,38,.12);
+
+  --maxw:1200px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--surface); color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  font-size:16px; line-height:1.55;
+}
+::selection{background:var(--teal-100); color:var(--teal-700);}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+button{font-family:inherit; cursor:pointer;}
+
+/* ---------- Typography ---------- */
+.display{
+  font-family:var(--serif); font-weight:700; color:var(--navy);
+  line-height:1.03; letter-spacing:-.018em;
+  text-wrap:balance;
+}
+.eyebrow{
+  font-family:var(--sans); font-weight:700; font-size:12.5px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--teal);
+  display:inline-flex; align-items:center; gap:8px;
+}
+.eyebrow.gold{color:var(--gold-700);}
+.lede{
+  font-size:19px; line-height:1.6; color:var(--slate-600); font-weight:400;
+  text-wrap:pretty;
+}
+.reo{font-style:italic;}
+
+/* ---------- Layout ---------- */
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+.wrap-wide{max-width:1320px; margin:0 auto; padding:0 32px;}
+section{position:relative;}
+.section-pad{padding:104px 0;}
+.section-pad-sm{padding:72px 0;}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  font-family:var(--sans); font-weight:600; font-size:15px;
+  padding:13px 22px; border-radius:var(--r-pill); border:1px solid transparent;
+  transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, color .2s;
+  white-space:nowrap; line-height:1;
+}
+.btn:active{transform:translateY(1px);}
+.btn-primary{background:var(--navy); color:#fff; box-shadow:var(--sh-sm);}
+.btn-primary:hover{background:var(--navy-800); box-shadow:var(--sh-md); transform:translateY(-1px);}
+.btn-teal{background:var(--teal); color:#fff; box-shadow:0 6px 18px -6px rgba(14,124,114,.55);}
+.btn-teal:hover{background:var(--teal-500); transform:translateY(-1px);}
+.btn-gold{background:var(--gold); color:#231a06; box-shadow:0 6px 18px -6px rgba(200,146,42,.5);}
+.btn-gold:hover{background:var(--gold-400); transform:translateY(-1px);}
+.btn-ghost{background:#fff; color:var(--navy); border-color:var(--line);}
+.btn-ghost:hover{border-color:var(--slate-300); background:var(--surface-2);}
+.btn-ghost-light{background:transparent; color:#fff; border-color:rgba(255,255,255,.28);}
+.btn-ghost-light:hover{border-color:rgba(255,255,255,.6); background:rgba(255,255,255,.08);}
+.btn-lg{padding:16px 28px; font-size:16px;}
+.btn-sm{padding:9px 15px; font-size:13.5px;}
+
+/* ---------- Pills / chips ---------- */
+.chip{
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:var(--r-pill);
+  background:var(--surface-3); color:var(--slate-700); border:1px solid var(--line);
+  white-space:nowrap;
+}
+.chip-teal{background:var(--teal-100); color:var(--teal-700); border-color:transparent;}
+.chip-gold{background:var(--gold-100); color:var(--gold-700); border-color:transparent;}
+.chip-navy{background:var(--navy); color:#fff; border-color:transparent;}
+
+/* ---------- Cards ---------- */
+.card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--r-lg);
+  box-shadow:var(--sh-xs); transition:box-shadow .25s ease, transform .25s ease, border-color .25s;
+}
+.card-hover:hover{box-shadow:var(--sh-md); transform:translateY(-3px); border-color:var(--line-soft);}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:sticky; top:0; z-index:60;
+  background:rgba(251,252,253,.82); backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid var(--line-soft);
+}
+.nav-inner{display:flex; align-items:center; justify-content:space-between; height:68px;}
+.nav-links{display:flex; align-items:center; gap:30px;}
+.nav-link{font-size:14.5px; font-weight:500; color:var(--slate-700); transition:color .15s;}
+.nav-link:hover{color:var(--navy);}
+.nav-cta{display:flex; align-items:center; gap:12px;}
+
+/* ---------- Logo ---------- */
+.logo{display:inline-flex; align-items:center; gap:11px;}
+.logo-mark{width:34px; height:34px; flex:none;}
+.logo-word{font-family:var(--serif); font-weight:700; font-size:23px; color:var(--navy); letter-spacing:-.01em;}
+.logo-word .dot{color:var(--teal);}
+.logo-sm .logo-mark{width:28px; height:28px;}
+.logo-sm .logo-word{font-size:19px;}
+.logo-light .logo-word{color:#fff;}
+
+/* ---------- Product window chrome ---------- */
+.win{
+  background:#fff; border:1px solid var(--line); border-radius:var(--r-lg);
+  box-shadow:var(--sh-lg); overflow:hidden;
+}
+.win-bar{
+  display:flex; align-items:center; gap:8px; padding:12px 16px;
+  border-bottom:1px solid var(--line-soft); background:var(--surface-2);
+}
+.win-dots{display:flex; gap:7px;}
+.win-dots i{width:11px; height:11px; border-radius:50%; display:block;}
+.win-title{font-size:12.5px; font-weight:600; color:var(--slate-500); margin-left:6px; display:flex; align-items:center; gap:7px;}
+
+/* ---------- Footer ---------- */
+.footer{background:var(--navy-900); color:#aebccd;}
+.footer a{color:#aebccd; transition:color .15s;}
+.footer a:hover{color:#fff;}
+
+/* ---------- Utility ---------- */
+.grid{display:grid;}
+.flex{display:flex;}
+.muted{color:var(--slate-500);}
+.center{text-align:center;}
+.divider{height:1px; background:var(--line); border:0;}
+.kbd{font-family:var(--sans); font-size:12px; font-weight:600; padding:2px 7px; border-radius:6px; background:#fff; border:1px solid var(--line); box-shadow:0 1px 0 var(--line); color:var(--slate-600);}
+
+/* dotted / grid backdrop */
+.bg-dots{background-image:radial-gradient(var(--line) 1px, transparent 1px); background-size:22px 22px;}
+.bg-grid{background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px); background-size:44px 44px;}
+
+/* weave motif accent line */
+.weave{height:3px; width:54px; border-radius:2px;
+  background:linear-gradient(90deg,var(--teal) 0 33%,var(--gold) 33% 66%,var(--navy) 66% 100%);}
+
+/* reveal on active */
+@media (prefers-reduced-motion:no-preference){
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s cubic-bezier(.2,.7,.3,1), transform .6s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1; transform:none;}
+}
+
+/* fade/scale for generated output */
+@keyframes popIn{from{opacity:0; transform:translateY(8px) scale(.98);} to{opacity:1; transform:none;}}
+.pop{animation:popIn .42s cubic-bezier(.2,.8,.3,1) both;}
+
+@media(max-width:900px){
+  .section-pad{padding:72px 0;}
+  .wrap,.wrap-wide{padding:0 22px;}
+  .display{letter-spacing:-.01em;}
+}
