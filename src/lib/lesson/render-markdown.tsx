@@ -129,9 +129,10 @@ function sectionMod(heading: string): string {
 }
 
 function groupSections(text: string): Section[] {
+  type Raw = { heading: string | null; body: string }
   const lines = text.split('\n')
-  const sections: Section[] = []
-  let current: { heading: string | null; body: string } = { heading: null, body: '' }
+  const sections: Raw[] = []
+  let current: Raw = { heading: null, body: '' }
 
   for (const raw of lines) {
     const line = raw.trimEnd()
