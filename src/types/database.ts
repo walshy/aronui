@@ -30,9 +30,45 @@ export type Profile = {
   email: string | null
   full_name: string | null
   school: string | null
+  role: 'admin' | 'teacher'
   created_at: string
   updated_at: string
 }
+
+export type TemplateStatus   = 'draft' | 'published'
+export type TemplateInputType = 'text' | 'textarea' | 'select'
+
+export type Template = {
+  id: string
+  created_by: string
+  title: string
+  category: string
+  description: string | null
+  uses_curriculum: boolean
+  output_format: 'in_app'
+  output_description: string | null
+  status: TemplateStatus
+  prompt_body: string
+  created_at: string
+  updated_at: string
+}
+
+export type TemplateInput = {
+  id: string
+  template_id: string
+  label: string
+  placeholder_key: string
+  helper_text: string | null
+  input_type: TemplateInputType
+  options: string[]
+  required: boolean
+  sort_order: number
+  created_at: string
+}
+
+export type TemplateInsert = Omit<Template, 'id' | 'created_at' | 'updated_at'>
+export type TemplateUpdate = Partial<Omit<Template, 'id' | 'created_by' | 'created_at' | 'updated_at'>>
+export type TemplateInputInsert = Omit<TemplateInput, 'id' | 'created_at'>
 
 export type LessonGeneration = {
   id: string
@@ -43,6 +79,8 @@ export type LessonGeneration = {
   prompt: string
   generated_content: string
   curriculum_doc_ids: string[]
+  metadata: Json | null
+  documents: Json | null
   created_at: string
 }
 
@@ -75,6 +113,40 @@ export type LessonGenerationInsert = Omit<LessonGeneration, 'id' | 'created_at'>
 export type ResourceInsert = Omit<Resource, 'id' | 'created_at' | 'updated_at'>
 
 export type ResourceUpdate = Partial<Pick<Resource, 'title' | 'description' | 'content' | 'metadata'>>
+
+export type AiUsageStatus = 'success' | 'error'
+
+export type AiUsageLog = {
+  id:              string
+  created_at:      string
+  user_id:         string | null
+  tool:            string
+  template_id:     string | null
+  model:           string
+  input_tokens:    number
+  output_tokens:   number
+  cost_usd:        string  // numeric returned as string by PostgREST
+  status:          AiUsageStatus
+  latency_ms:      number | null
+  resolved_prompt: string | null
+  output:          string | null
+  error_message:   string | null
+}
+
+export type AiUsageLogInsert = {
+  user_id:         string | null
+  tool:            string
+  template_id:     string | null
+  model:           string
+  input_tokens:    number
+  output_tokens:   number
+  cost_usd:        number
+  status:          AiUsageStatus
+  latency_ms:      number | null
+  resolved_prompt: string | null
+  output:          string | null
+  error_message?:  string | null
+}
 
 // ----------------------------------------------------------
 // search_curriculum() RPC return type
@@ -126,6 +198,24 @@ export type Database = {
         Row: Resource
         Insert: ResourceInsert
         Update: ResourceUpdate
+        Relationships: never[]
+      }
+      templates: {
+        Row: Template
+        Insert: TemplateInsert
+        Update: TemplateUpdate
+        Relationships: never[]
+      }
+      template_inputs: {
+        Row: TemplateInput
+        Insert: TemplateInputInsert
+        Update: Partial<TemplateInputInsert>
+        Relationships: never[]
+      }
+      ai_usage_log: {
+        Row: AiUsageLog
+        Insert: AiUsageLogInsert
+        Update: Partial<AiUsageLogInsert>
         Relationships: never[]
       }
     }

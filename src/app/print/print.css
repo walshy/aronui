@@ -1,0 +1,397 @@
+/* ============================================================
+   Aronui — Print / PDF view
+   ============================================================
+
+   Design tokens (--navy, --teal, --serif, --sans, etc.)
+   are available via globals.css loaded in the root layout.
+
+   .no-print  — screen only (toolbar, print button)
+   .print-doc — each document; gets break-after:page in @media print
+   ============================================================ */
+
+/* ── Screen view ──────────────────────────────────────────── */
+
+.print-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--navy);
+  padding: 13px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.print-wordmark {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -.02em;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.print-wordmark-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--teal);
+  display: inline-block;
+  flex: none;
+}
+
+.print-save-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal);
+  color: #fff;
+  border: 0;
+  border-radius: 9px;
+  padding: 9px 22px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s;
+}
+.print-save-btn:hover { background: var(--teal-500); }
+
+/* Content wrapper — matches a "printable" width on screen */
+.print-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 44px 80px;
+  font-family: var(--sans);
+  color: var(--navy);
+}
+
+/* ── Cover block ────────────────────────────────────────────── */
+
+.print-cover {
+  border: 2px solid var(--navy);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 52px;
+}
+
+.print-cover-header {
+  background: var(--navy);
+  padding: 20px 26px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.print-cover-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.print-cover-wordmark {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -.02em;
+}
+
+.print-cover-tagline {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--teal-300);
+}
+
+.print-cover-context {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
+  white-space: nowrap;
+  text-align: right;
+}
+.print-cover-sep { color: rgba(255,255,255,.3); }
+
+.print-cover-body {
+  padding: 22px 26px 0;
+}
+
+.print-cover-aim {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--navy);
+  margin: 0 0 10px;
+}
+
+.print-cover-audience {
+  font-size: 13px;
+  color: var(--slate-600);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.print-cover-curriculum {
+  padding: 16px 26px 22px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--line-soft);
+}
+
+.print-cover-curr-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--slate-400);
+  margin-bottom: 10px;
+}
+
+.print-cover-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.print-chip {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--teal-100);
+  color: var(--teal-700);
+  border: 1px solid var(--teal-300);
+  line-height: 1.3;
+}
+
+/* ── Document sections ────────────────────────────────────── */
+
+.print-doc { margin-bottom: 48px; }
+.print-doc:last-child { margin-bottom: 0; }
+
+.print-doc-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 18px;
+  padding-bottom: 12px;
+  border-bottom: 2.5px solid var(--teal);
+  line-height: 1.3;
+}
+
+/* Markdown body in print context */
+.print-body { }
+.print-body h3 {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+  margin: 20px 0 8px;
+}
+.print-body h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--slate-700);
+  margin: 14px 0 5px;
+}
+.print-body p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--slate-700);
+  margin: 0 0 8px;
+}
+.print-body p:last-child { margin-bottom: 0; }
+.print-body ul {
+  margin: 4px 0 12px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.print-body li {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--slate-700);
+  list-style-type: disc;
+}
+
+/* ── Student worksheet header ─────────────────────────────── */
+
+.ws-student-header  { margin-bottom: 32px; }
+
+.ws-student-band {
+  background: var(--navy);
+  padding: 18px 26px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.ws-student-brand   { display: flex; align-items: baseline; gap: 12px; }
+
+.ws-student-wordmark {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -.018em;
+}
+
+.ws-student-ctx {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal-300);
+  letter-spacing: .01em;
+}
+
+.ws-student-doctitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.65);
+  text-align: right;
+}
+
+.ws-student-strip {
+  background: var(--surface-2);
+  border: 1.5px solid var(--line);
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+  padding: 15px 26px;
+  display: flex;
+  gap: 0;
+}
+
+.ws-student-field {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: 1;
+  padding-right: 28px;
+}
+.ws-student-field:last-child { padding-right: 0; }
+
+.ws-student-field-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--slate-400);
+  white-space: nowrap;
+  flex: none;
+}
+
+.ws-student-field-line {
+  flex: 1;
+  height: 1.5px;
+  background: var(--slate-300);
+}
+
+.ws-field-short { max-width: 140px; }
+
+/* ── Worksheet elements in print body ─────────────────────── */
+
+/* Section wrappers */
+.print-body .ws-section { margin-bottom: 16px; }
+.print-body .ws-section-step {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  break-inside: avoid;
+}
+.print-body .ws-section-learning {
+  border: 1.5px solid rgba(14,124,114,.25);
+  border-radius: 10px;
+  padding: 14px 16px;
+  break-inside: avoid;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.print-body .ws-section-success {
+  border: 1.5px solid rgba(200,146,42,.25);
+  border-radius: 10px;
+  padding: 14px 16px;
+  break-inside: avoid;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.print-body .ws-section-heading {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+}
+
+/* Sentence frame */
+.print-body .ws-frame {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  break-inside: avoid;
+}
+
+/* Task list */
+.print-body .ws-tasklist { gap: 9px; }
+.print-body .ws-taskitem { font-size: 13px; }
+.print-body .ws-checkbox { width: 14px; height: 14px; }
+
+/* Answer lines */
+.print-body .ws-answerlines { gap: 24px; margin: 12px 0 16px; }
+.print-body .ws-answerline  { background: #bbb; height: 1px; }
+
+/* ── @media print ─────────────────────────────────────────── */
+
+@media print {
+  .no-print { display: none !important; }
+
+  @page { margin: 20mm 18mm; }
+
+  body { background: #fff !important; }
+
+  .print-content {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Cover takes a full page on its own */
+  .print-cover {
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    break-after: page;
+  }
+
+  /* Force background colours for navy header to print */
+  .print-cover-header,
+  .print-cover-curriculum {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Student header band */
+  .ws-student-header { margin-bottom: 24px; }
+  .ws-student-band   {
+    border-radius: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .ws-student-strip  { border-radius: 0; }
+
+  /* Each doc breaks to a new page */
+  .print-doc { break-after: page; margin-bottom: 0; }
+  .print-doc:last-child { break-after: auto; }
+
+  /* Reset borders/margin between docs in print (handled by page breaks) */
+  .print-doc + .print-doc { margin-top: 0; }
+}

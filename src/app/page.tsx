@@ -561,7 +561,7 @@ function AppNav() {
           {items.map(([t, h]) => <a key={t} className="nav-link" href={h}>{t}</a>)}
         </nav>
         <div className="nav-cta">
-          <a href="#" className="nav-link nav-desktop" style={{ fontWeight: 600 }}>Sign in</a>
+          <a href="/login" className="nav-link nav-desktop" style={{ fontWeight: 600 }}>Sign in</a>
           <a href="#cta" className="btn btn-navy btn-sm" style={{ background: 'var(--navy)', color: '#fff' }}>Start Planning</a>
         </div>
       </div>
